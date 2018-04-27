@@ -23,12 +23,12 @@ defmodule Connector.Client.Line do
   end
 
   def handle_frame(msg, state) do
-    Connector.handle_message(msg, state)
+    state.mod.handle_message(msg, state)
 
     {:ok, state}
   end
 
-  def handle_disconnect(conn, state) do
+  def handle_disconnect(_conn, state) do
     Logger.debug("Disconnected...")
 
     {:ok, state}

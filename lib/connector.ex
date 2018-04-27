@@ -18,12 +18,12 @@ defmodule Connector do
 
   @type data :: any
   @type state :: any
-  @tyope error :: any
+  @type error :: any
 
   @callback handle_message(data, state) :: {:ok, state} | {:error, error}
 
   defmacro __using__(_opts) do
-    quote do
+    quote location: :keep do
       @behaviour Connector
 
       alias Connector.Interface
