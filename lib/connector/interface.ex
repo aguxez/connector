@@ -32,17 +32,6 @@ defmodule Connector.Interface do
     {:noreply, new_state}
   end
 
-  def handle_call({:subscribe, market}, _from, state) do
-    status = %{
-      "H" => "c2", "I" => 0, "M" => "SubscribeToExchangeDeltas",
-      "A" => market
-    }
-    |> Jason.encode!()
-    |> Line.send(:text)
-
-    {:reply, status, state}
-  end
-
   def negotiate(state) do
     conn_data = Jason.encode!(state.negotiate_query.connection_data)
 

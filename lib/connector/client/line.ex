@@ -24,8 +24,6 @@ defmodule Connector.Client.Line do
 
   def handle_frame(msg, state) do
     state.mod.handle_message(msg, state)
-
-    {:ok, state}
   end
 
   def handle_disconnect(_conn, state) do
