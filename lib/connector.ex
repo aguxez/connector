@@ -17,7 +17,16 @@ defmodule Connector do
 
       def handle_message(_data, state), do: {:ok, state}
 
-      defoverridable handle_message: 2
+      def child_spec(_arg) do
+        spec = %{
+          id: __MODULE__,
+          start: {__MODULE__, :start_link, []}
+        }
+
+        Supervisor.child_spec(spec, restart: :permanent)
+      end
+
+      defoverridable handle_message: 2, child_spec: 1
     end
   end
 end
