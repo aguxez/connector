@@ -2,7 +2,7 @@
 
 ## Installation
 
-Not available in Hex for now, use Github's version.
+Not available in Hex, use Github's.
 
 ```elixir
 def deps do
@@ -13,10 +13,10 @@ end
 ```
 
 ## Usage
-The process is pretty straight forward, you'll want to create a `start_link` function your module and add it to your Supervision tree. `Connector.Interface.start_link/1` expects a map as the argument, it has required keys, example:
+The process is pretty straight forward, you'll want to create a `start_link` function for your module and add it to your Supervision tree. `Connector.Interface.start_link/1` expects a map as the argument, it has required keys, example:
 
 ```elixir
-# We're suppose you're going to connect to Bittrex websocket API.
+# Let's suppose you're going to connect to Bittrex websocket API.
 state = %{
   base_url: "https://socket.bittrex.com/signalr",
   ws_url: "wss://socket.bittrex.com/signalr",
