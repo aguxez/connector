@@ -45,7 +45,7 @@ defmodule Connector.Interface do
 
   def do_negotiate(request, state) do
     request
-    |> Enum.map(fn{key, value} ->
+    |> Enum.map(fn {key, value} ->
       new_key =
         key
         |> Macro.underscore()
