@@ -1,5 +1,10 @@
-defmodule Connector.Interface do
+  defmodule Connector.Interface do
   @moduledoc false
+
+  defstruct ~w(
+    connection_id connection_timeout connection_token disconnect_timeout keep_alive_timeout
+    long_poll_delay protocol_version transport_connect_timeout try_web_sockets url
+  )a
 
   use Tesla
   use GenServer
@@ -9,13 +14,8 @@ defmodule Connector.Interface do
   alias Connector.Client.{Line}
   alias Tesla.Middleware
 
-  @keys ~w(
-    connection_id connection_timeout connection_token disconnect_timeout keep_alive_timeout
-    long_poll_delay protocol_version transport_connect_timeout try_web_sockets url
-  )a
-
   def start_link(state) do
-    GenServer.start_link(__MODULE__, Map.put(state, :existing_keys, @keys), name: :connector)
+    GenServer.start_link(__MODULE__, state, name: :connector)
   end
 
   # SERVER
@@ -23,7 +23,7 @@ defmodule Connector.Interface do
   def init(state) do
     send(self(), :negotiate)
 
-    {:ok, Map.drop(state, [:existing_keys])}
+    {:ok, state}
   end
 
   def handle_info(:negotiate, state) do
