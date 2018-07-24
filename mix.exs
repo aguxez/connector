@@ -26,7 +26,8 @@ defmodule Connector.MixProject do
       {:websockex, github: "Azolo/websockex"},
       {:tesla, "~> 0.10.0"},
       {:jason, "~> 1.0.0"},
-      {:pastry, "~> 0.3.0"}
+      {:pastry, "~> 0.3.0"},
+      {:credo, "~> 0.9.3", only: [:dev, :test]}
     ]
   end
 end
